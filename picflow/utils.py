@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from typing import Optional, Tuple
 
 
 def rotate_image(img: np.ndarray, angle: float = 90., scale: float = 1.0) -> np.ndarray:
@@ -13,8 +14,8 @@ def rotate_image(img: np.ndarray, angle: float = 90., scale: float = 1.0) -> np.
 
 def resize_image(
         img: np.ndarray,
-        width: float | None = None,
-        height: float | None = None
+        width: Optional[float] = None,
+        height: Optional[float] = None
 ) -> np.ndarray:
     if width is None and height is None:
         return img
@@ -38,7 +39,7 @@ def enhance_contrast(img: np.ndarray) -> np.ndarray:
     return cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 
 
-def blur_background(img: np.ndarray, kernel: tuple[int, int] = (15, 15)) -> np.ndarray:
+def blur_background(img: np.ndarray, kernel: Tuple[int, int] = (15, 15)) -> np.ndarray:
     return cv2.GaussianBlur(img, kernel, 0)
 
 

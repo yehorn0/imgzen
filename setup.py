@@ -11,7 +11,7 @@ setup(
     author="<NAME>",
     desciption="Picflow Python package",
     long_description=open("README.md").read(),
-    url = "https://github.com/yehorn0/picflow",
+    url="https://github.com/yehorn0/picflow",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",

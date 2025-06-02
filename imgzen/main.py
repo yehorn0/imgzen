@@ -6,22 +6,16 @@ import argparse
 
 
 def main() -> None:
-    command_choices = [
-        "rotate",
-        "resize",
-        "contrast",
-        "blur",
-        "autocorrect"
-    ]
+    command_choices = ["rotate", "resize", "contrast", "blur", "autocorrect"]
 
-    parser = argparse.ArgumentParser(description='Process some images.')
+    parser = argparse.ArgumentParser(description="Process some images.")
 
     parser.add_argument("command", choices=command_choices, help="Operation to make")
 
     parser.add_argument("-i", "--input", required=True, help="Path to input image")
     parser.add_argument("-o", "--output", required=True, help="Path to output image")
 
-    parser.add_argument("-a", "--angle", type=float, default=90., help="Rotation angle (for rotate)")
+    parser.add_argument("-a", "--angle", type=float, default=90.0, help="Rotation angle (for rotate)")
     parser.add_argument("--width", type=int, help="Resized image width (for resize)")
     parser.add_argument("--height", type=int, help="Resized image height (for resize)")
     parser.add_argument("-k", "--ksize", type=int, default=15, help="Blur kernel size (for blur)")
@@ -35,19 +29,18 @@ def main() -> None:
         print(f"Image not found at {args.input}")
         return
 
-    match args.command:
-        case "rotate":
-            result = utils.rotate_image(img, args.angle)
-        case "resize":
-            result = utils.resize_image(img, width=args.width, height=args.height)
-        case "contrast":
-            result = utils.enhance_contrast(img)
-        case "blur":
-            result = utils.blur_background(img, kernel=(args.ksize, args.ksize))
-        case "autocorrect":
-            result = utils.auto_correction(img)
-        case _:
-            print("Invalid command")
+    if args.command == "rotate":
+        result = utils.rotate_image(img, args.angle)
+    elif args.command == "resize":
+        result = utils.resize_image(img, width=args.width, height=args.height)
+    elif args.command == "contrast":
+        result = utils.enhance_contrast(img)
+    elif args.command == "blur":
+        result = utils.blur_background(img, kernel=(args.ksize, args.ksize))
+    elif args.command == "autocorrect":
+        result = utils.auto_correction(img)
+    else:
+        print("Invalid command")
 
     # Handle result
     os.makedirs(os.path.dirname(args.output), exist_ok=True)

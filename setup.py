@@ -2,16 +2,16 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="picflow",
+    name="imgzen",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
         "opencv-python"
     ],
-    author="<NAME>",
-    desciption="Picflow Python package",
+    author="yehorn0",
+    desciption="Imgzen Python package",
     long_description=open("README.md").read(),
-    url="https://github.com/yehorn0/picflow",
+    url="https://github.com/yehorn0/imgzen",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
@@ -20,7 +20,7 @@ setup(
     python_requires=">=3.8",
     entry_points={
         "console_scripts": [
-            "picflow = picflow.main:main"
+            "imgzen = imgzen.main:main"
         ]
     }
 )

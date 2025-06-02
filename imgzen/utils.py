@@ -3,7 +3,7 @@ import numpy as np
 from typing import Optional, Tuple
 
 
-def rotate_image(img: np.ndarray, angle: float = 90., scale: float = 1.0) -> np.ndarray:
+def rotate_image(img: np.ndarray, angle: float = 90.0, scale: float = 1.0) -> np.ndarray:
     (h, w) = img.shape[:2]
     center = (w // 2, h // 2)
 
@@ -13,21 +13,21 @@ def rotate_image(img: np.ndarray, angle: float = 90., scale: float = 1.0) -> np.
 
 
 def resize_image(
-        img: np.ndarray,
-        width: Optional[float] = None,
-        height: Optional[float] = None
+    img: np.ndarray, width: Optional[float] = None, height: Optional[float] = None
 ) -> np.ndarray:
     if width is None and height is None:
         return img
 
     (h, w) = img.shape[:2]
 
-    if width is None:
+    if width is None and height is not None:
         r = height / float(h)
-        dim = (int(w * r), height)
-    else:
+        dim = (int(w * r), int(height))
+    elif width is not None and height is None:
         r = width / float(w)
-        dim = (width, int(h * r))
+        dim = (int(width), int(h * r))
+    else:
+        return img
 
     return cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
 

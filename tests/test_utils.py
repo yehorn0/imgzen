@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from picflow import utils
+from imgzen import utils
 
 
 @pytest.fixture

@@ -1,7 +1,7 @@
 import os
 
 import cv2
-import picflow.utils as utils
+import imgzen.utils as utils
 import argparse
 
 

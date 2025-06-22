@@ -7,4 +7,3 @@ Simple CLI for image operation
 ```bash
 pip install .
 ```
-

@@ -58,3 +58,35 @@ exclude = [
 [tool.pytest.ini_options]
 addopts = "-ra -q"
 testpaths = ["tests"]
+
+[tool.tox]
+envlist = [
+    "py39",
+    "py310",
+    "py311",
+    "py312",
+    "pre-commit"
+]
+
+[tool.tox.testenv]
+deps = [
+    "pytest",
+    "pytest-cov"
+]
+commands = [
+    "pytest --cov=imgzen --cov-branch --cov-report=xml"
+]
+
+[tool.tox.testenv.pre-commit]
+description = "Run pre-commit hooks"
+skip_install = true
+deps = "pre-commit"
+commands = [
+    "pre-commit run --all-files --show-diff-on-failure"
+]
+
+[tool.tox.gh.python]
+"3.9" = ["py39"]
+"3.10" = ["py310"]
+"3.11" = ["py311"]
+"3.12" = ["py312"]

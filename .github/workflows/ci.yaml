@@ -22,14 +22,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        env:
+        python-version:
           - "3.9"
           - "3.10"
           - "3.11"
           - "3.12"
         os:
           - ubuntu-latest
-          - macos-latest
 
     steps:
       - name: Checkout code

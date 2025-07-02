@@ -23,8 +23,10 @@ jobs:
         uses: fabiocaccamo/create-matrix-action@v3
         with:
           matrix: |
-            python-version {3.9}, tox-env {py39}, os: {ubuntu-latest}
-            python-version {3.10}, tox-env {py310}, os: {ubuntu-latest}
+            python-version {3.9}, tox-env {py39}
+            python-version {3.10}, tox-env {py310}
+            python-version {3.11}, tox-env {py311}
+            python-version {3.12}, tox-env {py312}
 
     outputs:
       matrix: ${{ steps.create_matrix.outputs.matrix }}
@@ -32,9 +34,8 @@ jobs:
   test:
     needs: prepare
 
-    name: Tests (Python ${{ matrix.python-version }} on ${{ matrix.os }})
-    # runs-on: ${{ matrix.os }}
-    runs-on: ubuntu-latest
+    name: Tests (Python ${{ matrix.python-version }} on ${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
 
     permissions:
       contents: read
@@ -43,6 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        platform: [ubuntu-latest]
         include: ${{fromJson(needs.prepare.outputs.matrix)}}
 
     steps:

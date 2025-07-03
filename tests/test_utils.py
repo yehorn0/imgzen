@@ -10,8 +10,8 @@ def test_enhance_contrast(dummy_image: TImage) -> None:
 
 
 def test_blur_background(dummy_image: TImage) -> None:
-    blurred = utils.blur_background(dummy_image)
-    assert blurred.shape == dummy_image.shape
+    blurred_image = utils.blur_background(dummy_image)
+    assert blurred_image.shape == dummy_image.shape
 
 
 def test_auto_correction(dummy_image: TImage) -> None:

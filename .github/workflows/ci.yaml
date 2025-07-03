@@ -34,8 +34,8 @@ jobs:
   test:
     needs: prepare
 
-    name: Tests (Python ${{ matrix.python-version }} on ${{ matrix.platform }})
-    runs-on: ${{ matrix.platform }}
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
 
     permissions:
       contents: read
@@ -44,7 +44,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-latest]
         include: ${{fromJson(needs.prepare.outputs.matrix)}}
 
     steps:
@@ -77,6 +76,12 @@ jobs:
 
       - name: Run tox environment
         run: tox -e ${{ matrix.tox-env }}
+
+      - if: matrix.python-version == '3.12'
+        name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     name: Lint

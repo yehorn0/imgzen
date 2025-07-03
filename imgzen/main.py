@@ -39,8 +39,6 @@ def main() -> None:
         result = utils.blur_background(img, kernel=(args.ksize, args.ksize))
     elif args.command == "autocorrect":
         result = utils.auto_correction(img)
-    else:
-        print("Invalid command")
 
     # Handle result
     os.makedirs(os.path.dirname(args.output), exist_ok=True)

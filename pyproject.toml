@@ -69,24 +69,24 @@ envlist = [
     "lint"
 ]
 
-[tool.tox.testenv]
+[tool.tox.env_run_base]
 deps = [
     "pytest",
     "pytest-cov"
 ]
 commands = [
-    "pytest --cov=imgzen --cov-branch --cov-report=xml"
+    ["pytest", "--cov=imgzen", "--cov-branch", "--cov-report=xml"]
 ]
 
-[tool.tox.testenv.pre-commit]
+[tool.tox.env.pre-commit]
 description = "Run pre-commit hooks"
 skip_install = true
 deps = "pre-commit"
 commands = [
-    "pre-commit run --all-files --show-diff-on-failure"
+    ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
 ]
 
-[tool.tox.testenv.lint]
+[tool.tox.env.lint]
 description = "Run code style and static analysis"
 skip_install = true
 deps = [
@@ -96,7 +96,7 @@ deps = [
     "mypy"
 ]
 commands = [
-    "black --check .",
-    "flake8 --exclude=tests/,scripts/",
-    "mypy --exclude \"^(tests/|scripts/)\"",
+    ["black", "--check", "."],
+    ["flake8", "--exclude=tests/,scripts/", "imgzen/"],
+    ["mypy", "imgzen/"],
 ]

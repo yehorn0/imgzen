@@ -42,7 +42,9 @@ def main() -> None:
 
     # Handle result
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
+
     cv2.imwrite(args.output, result)
+
     print(f"Result saved to {args.output}")
 
 

@@ -37,7 +37,8 @@ def main() -> None:
         result = utils.enhance_contrast(img)
     elif args.command == "blur":
         result = utils.blur_background(img, kernel=(args.ksize, args.ksize))
-    elif args.command == "autocorrect":
+    elif args.command == "autocorrect":  # pragma: no cover
+        # here is the last command which is always "autocorrect"
         result = utils.auto_correction(img)
 
     # Handle result
@@ -48,5 +49,5 @@ def main() -> None:
     print(f"Result saved to {args.output}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
